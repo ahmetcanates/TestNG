@@ -11,9 +11,10 @@ public class Day21_TechproLoginTest {
 
     //https://testcenter.techproeducation.com/index.php?page=form-authentication
     //Page object Model kullanarak sayfaya giriş yapildigini test edin
+    //Sayfadan cikis yap ve cikis yapildigini test et
 
     @Test
-    public void testtest() {
+    public void techproTest() {
         Driver.getDriver().get(ConfigReader.getProperty("techproed_url"));
 
         TechproLoginPage techproLoginPage = new TechproLoginPage();
@@ -38,7 +39,7 @@ public class Day21_TechproLoginTest {
     }
 
 
-    //Sayfadan cikis yap ve cikis yapildigini test et
+
     //techproed
     //SuperSecretPassword
     //TechproLoginPage
