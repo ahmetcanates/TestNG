@@ -13,7 +13,7 @@ public class Day21_TechproLoginTest {
     //Page object Model kullanarak sayfaya giriş yapildigini test edin
     //Sayfadan cikis yap ve cikis yapildigini test et
 
-    @Test
+    @Test(groups = "regression-tests")
     public void techproTest() {
         Driver.getDriver().get(ConfigReader.getProperty("techproed_url"));
 
