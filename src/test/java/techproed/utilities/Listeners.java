@@ -3,11 +3,9 @@ package techproed.utilities;
 import org.testng.ITestContext;
 import org.testng.ITestListener;
 import org.testng.ITestResult;
-
 import java.io.IOException;
 
 public class Listeners implements ITestListener {
-
     @Override
     public void onStart(ITestContext context) {
         System.out.println("onStart-Tum testlerden once tek bir kere cagrilir : "+context.getName());
@@ -28,7 +26,7 @@ public class Listeners implements ITestListener {
     public void onTestFailure(ITestResult result){
         System.out.println("onTestFailure-Sadece FAIL olan testlerden SONRA tek bir kez cagrilir : "+result.getName());
         try {
-            ReusableMethods.getScreenshot("TEST-CASE-FAIL-" + result.getName());
+            ReusableMethods.getScreenshot("Test-Case-FAIL-" + result.getName());
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -37,5 +35,4 @@ public class Listeners implements ITestListener {
     public void onTestSkipped(ITestResult result) {
         System.out.println("onTestSkipped-Sadece SKIP(atlanan) testlerden SONRA tek bir kez cagrilir : "+result.getName());
     }
-
 }
