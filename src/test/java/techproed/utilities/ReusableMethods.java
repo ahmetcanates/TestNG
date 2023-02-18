@@ -3,8 +3,12 @@ package techproed.utilities;
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.interactions.SourceType;
 import org.openqa.selenium.support.ui.*;
 import org.testng.Assert;
+import java.awt.*;
+import java.awt.datatransfer.StringSelection;
+import java.awt.event.KeyEvent;
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
@@ -16,9 +20,7 @@ import java.util.Random;
 import java.util.function.Function;
 import static org.testng.AssertJUnit.assertFalse;
 import static org.testng.AssertJUnit.assertTrue;
-
 public class ReusableMethods {
-
     public static String getScreenshot(String name) throws IOException {
         // naming the screenshot with the current date to avoid duplication
         String date = new SimpleDateFormat("yyyyMMddhhmmss").format(new Date());
@@ -217,6 +219,41 @@ public class ReusableMethods {
             assertTrue("Element not visible: " + element, element.isDisplayed());
         } catch (NoSuchElementException e) {
             Assert.fail("Element not found: " + element);
+        }
+    }
+    /**
+     * @param filePath ABSOLUTE DOSYA YOLU
+     *  ORNEK : ReusableMethods.uploadFilePath("/Users/techproed/Desktop/logo.jpeg")
+     */
+    public static void uploadFilePath(String filePath){
+        try{
+            ReusableMethods.waitFor(3);
+//            Dosyayi bulmak icin kullanilir
+            StringSelection stringSelection = new StringSelection(filePath);
+            Toolkit.getDefaultToolkit().getSystemClipboard().setContents(stringSelection,null);
+//            ROBOT CLASS MASAUSTU UYGULAMARI ILE ILETISIME GECMEK ICIN KULLANILIT
+            Robot robot = new Robot();
+//          CONTROL TUSUNA BAS
+            robot.keyPress(KeyEvent.VK_CONTROL);
+            ReusableMethods.waitFor(3);
+//            V TUSUNA BAS
+            robot.keyPress(KeyEvent.VK_V);
+            ReusableMethods.waitFor(3);
+            //releasing ctrl+v
+            robot.keyRelease(KeyEvent.VK_CONTROL);
+            ReusableMethods.waitFor(3);
+            robot.keyRelease(KeyEvent.VK_V);
+            ReusableMethods.waitFor(3);
+            System.out.println("YAPISTIRMA ISLEMI : PASSED");
+            //pressing enter
+            ReusableMethods.waitFor(3);
+            robot.keyPress(KeyEvent.VK_ENTER);
+            ReusableMethods.waitFor(3);
+            //releasing enter
+            robot.keyRelease(KeyEvent.VK_ENTER);
+            ReusableMethods.waitFor(3);
+            System.out.println("DOSYA YUKLENDI.");
+        }catch (Exception e){
         }
     }
 }
